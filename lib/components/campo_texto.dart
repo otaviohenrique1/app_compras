@@ -8,8 +8,10 @@ class CampoTexto extends StatelessWidget {
     this.obscureText,
     this.initialValue,
     this.hintText,
+    this.validator,
     this.onChanged,
     this.onSaved,
+    this.controller,
   });
 
   final String? labelText;
@@ -17,18 +19,16 @@ class CampoTexto extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? obscureText;
   final String? initialValue;
-  final Function(String)? onChanged;
-  final Function(String?)? onSaved;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "Campo vazio";
-        }
-        return null;
-      },
+      controller: controller,
+      validator: validator,
       onChanged: onChanged,
       onSaved: onSaved,
       initialValue: initialValue,

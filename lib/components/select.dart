@@ -6,11 +6,13 @@ class Select extends StatefulWidget {
     required this.lista,
     this.validator,
     this.outroItem,
+    this.onSaved,
   });
 
   final List<String> lista;
-  final String? Function(String?)? validator;
   final String? outroItem;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
 
   @override
   State<Select> createState() => _SelectState();
@@ -41,6 +43,7 @@ class _SelectState extends State<Select> {
           dropdownValue = value!;
         });
       },
+      onSaved: widget.onSaved,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderSide: const BorderSide(

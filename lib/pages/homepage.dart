@@ -12,9 +12,17 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    var formKey = GlobalKey<FormState>();
+    final bandeiraCartaoCreditoController = TextEditingController();
+
+    String bandeiraCartaoCredito = "";
+    String _nomeBanco = "";
+    String _nomeTitular = "";
+    String _numeroCartao = "";
+    String _numeroCartaoCVV = "";
 
     return Scaffold(
       appBar: AppBar(
@@ -37,44 +45,76 @@ class _HomepageState extends State<Homepage> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: Cartao(),
+                child: Cartao(
+                  bandeiraCartaoCredito: bandeiraCartaoCredito,
+                  nomeBanco: _nomeBanco,
+                  nomeTitular: _nomeTitular,
+                ),
               ),
               LabelCampo(
                 padding: const EdgeInsets.only(bottom: 16),
                 exibeTitulo: true,
                 titulo: "Bandeira do cartão",
-                campo: Select(lista: listaBandeirasCartaoCredito),
+                campo: Select(
+                  lista: listaBandeirasCartaoCredito,
+                  onSaved: (value) {
+                    bandeiraCartaoCredito = value!;
+                  },
+                ),
               ),
-              const LabelCampo(
-                padding: EdgeInsets.only(bottom: 16),
+              LabelCampo(
+                padding: const EdgeInsets.only(bottom: 16),
                 exibeTitulo: true,
                 titulo: "Nome do banco",
                 campo: CampoTexto(
                   keyboardType: TextInputType.text,
+                  hintText: "Digite o nome do banco",
+                  onSaved: (value) {
+                    _nomeBanco = value!;
+                  },
+                  controller: bandeiraCartaoCreditoController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Campo vazio";
+                    }
+                    return null;
+                  },
                 ),
               ),
-              const LabelCampo(
-                padding: EdgeInsets.only(bottom: 16),
+              LabelCampo(
+                padding: const EdgeInsets.only(bottom: 16),
                 exibeTitulo: true,
                 titulo: "Nome do titular",
                 campo: CampoTexto(
                   keyboardType: TextInputType.text,
+                  hintText: "Digite o nome do titular",
+                  onSaved: (value) {
+                    _nomeTitular = value!;
+                  },
                 ),
               ),
-              const LabelCampo(
-                padding: EdgeInsets.only(bottom: 16),
+              LabelCampo(
+                padding: const EdgeInsets.only(bottom: 16),
                 exibeTitulo: true,
-                titulo: "Numero do cartão",
+                titulo: "Numero no cartão",
                 campo: CampoTexto(
                   keyboardType: TextInputType.text,
+                  hintText: "Digite o numero no cartão",
+                  onSaved: (value) {
+                    _numeroCartao = value!;
+                  },
                 ),
               ),
-              const LabelCampo(
-                padding: EdgeInsets.only(bottom: 16),
+              LabelCampo(
+                padding: const EdgeInsets.only(bottom: 16),
                 exibeTitulo: true,
                 titulo: "Numero do CVV",
                 campo: CampoTexto(
                   keyboardType: TextInputType.number,
+                  hintText: "Digite o numero do CVV",
+                  onSaved: (value) {
+                    _numeroCartaoCVV = value!;
+                  },
                 ),
               ),
               LabelCampo(
@@ -104,37 +144,30 @@ class _HomepageState extends State<Homepage> {
                 fontSize: 20,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          "Produto editado com sucesso!",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        showCloseIcon: true,
-                      ),
-                    );
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   const SnackBar(
+                    //     content: Text(
+                    //       "Produto editado com sucesso!",
+                    //       style: TextStyle(fontSize: 16),
+                    //     ),
+                    //     showCloseIcon: true,
+                    //   ),
+                    // );
+                    print("_nomeBanco => $_nomeBanco");
+                    print(_nomeTitular);
+                    print(bandeiraCartaoCredito);
+                    print(_numeroCartao);
+                    print(_numeroCartaoCVV);
                   }
                 },
               ),
               const SizedBox(height: 8),
               Botao(
                 backgroundColor: Colors.red,
-                label: "Salvar",
+                label: "Cancelar",
                 fontColor: Colors.white,
                 fontSize: 20,
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          "Produto editado com sucesso!",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        showCloseIcon: true,
-                      ),
-                    );
-                  }
-                },
+                onPressed: () {},
               ),
             ],
           ),
