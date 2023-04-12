@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CampoTexto extends StatelessWidget {
-  final String? labelText;
-  final String? hintText;
-  final TextInputType? keyboardType;
-  final bool? obscureText;
-  final String? initialValue;
-
   const CampoTexto({
     super.key,
     this.keyboardType,
@@ -14,7 +8,17 @@ class CampoTexto extends StatelessWidget {
     this.obscureText,
     this.initialValue,
     this.hintText,
+    this.onChanged,
+    this.onSaved,
   });
+
+  final String? labelText;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final bool? obscureText;
+  final String? initialValue;
+  final Function(String)? onChanged;
+  final Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class CampoTexto extends StatelessWidget {
         }
         return null;
       },
+      onChanged: onChanged,
+      onSaved: onSaved,
       initialValue: initialValue,
       style: const TextStyle(
         fontSize: 16,

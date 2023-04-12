@@ -41,8 +41,15 @@ class _SelectState extends State<Select> {
           dropdownValue = value!;
         });
       },
-      decoration: const InputDecoration(
-        errorStyle: TextStyle(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.black,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        errorStyle: const TextStyle(
           color: Colors.red,
           fontSize: 16,
         ),
