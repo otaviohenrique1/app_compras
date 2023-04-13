@@ -6,6 +6,27 @@ import 'package:app_compras/utils/listas.dart';
 import 'package:app_compras/components/campo_texto.dart';
 import 'package:app_compras/components/select.dart';
 
+num valorTotalCompra = 900;
+
+List<String> divideValorTotalEmParcelas(
+    num valorTotal, int quantidadeParcelas) {
+  List<String> resultado = List.generate(quantidadeParcelas, (index) {
+    var parcela = index + 1;
+    var valor = (valorTotal / parcela).toStringAsFixed(2);
+    return "$parcela x R\$ $valor (Sem juros)";
+  });
+  return ["Preço à vista"] + resultado;
+}
+
+List<String> valorParcelas(num valorTotal, int quantidadeParcelas) {
+  List<String> resultado = List.generate(quantidadeParcelas, (index) {
+    var parcela = index + 1;
+    var valor = (valorTotal / quantidadeParcelas).toStringAsFixed(2);
+    return "$parcela x R\$ $valor (Sem juros)";
+  });
+  return resultado;
+}
+
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
@@ -33,6 +54,11 @@ class _HomepageState extends State<Homepage> {
   String dropdownValueValidadeMeses = listaValidadeMeses.first;
   String dropdownValueValidadeAnos = listaValidadeAnos.first;
 
+  List<String> listaParcelas =
+      ["Selecione"] + divideValorTotalEmParcelas(valorTotalCompra, 12);
+
+  List<String> listaValoresParcelas = valorParcelas(valorTotalCompra, 12);
+
   @override
   void dispose() {
     nomeBancoController.dispose();
@@ -41,6 +67,8 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValueListaParcelas = listaParcelas.first;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -204,6 +232,27 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ],
+                ),
+              ),
+              LabelCampo(
+                padding: const EdgeInsets.only(bottom: 16),
+                exibeTitulo: true,
+                titulo: "Parcelas",
+                campo: Select(
+                  lista: listaParcelas,
+                  dropdownValue: dropdownValueListaParcelas,
+                  onChanged: (value) async {
+                    setState(() {
+                      dropdownValueListaParcelas = value!;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value == "Selecione") {
+                      return "Valor inválido";
+                    }
+                    return null;
+                  },
+                  // onSaved: (value) {_bandeiraCartaoCredito = value!;},
                 ),
               ),
               // Text("Teste => $_nomeBanco"),
