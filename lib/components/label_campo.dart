@@ -25,11 +25,14 @@ class LabelCampo extends StatelessWidget {
                 (exibeTitulo == null || exibeTitulo == false) ? false : true,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                (titulo == null) ? "" : titulo!,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Text(
+                  (titulo == null) ? "" : titulo!,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

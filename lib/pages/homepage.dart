@@ -1,3 +1,4 @@
+import 'package:app_compras/utils/formatadores.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:app_compras/components/botao.dart';
@@ -9,16 +10,6 @@ import 'package:app_compras/components/select.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 num valorTotalCompra = 900;
-
-List<String> divideValorTotalEmParcelas(
-    num valorTotal, int quantidadeParcelas) {
-  List<String> resultado = List.generate(quantidadeParcelas, (index) {
-    var parcela = index + 1;
-    var valor = (valorTotal / parcela).toStringAsFixed(2);
-    return "$parcela x R\$ $valor (Sem juros)";
-  });
-  return ["Preço à vista"] + resultado;
-}
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -89,8 +80,38 @@ class _HomepageState extends State<Homepage> {
           key: formKey,
           child: ListView(
             children: <Widget>[
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.grey,
+                      style: BorderStyle.solid,
+                      width: 1,
+                    ),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Total: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        "R\$ ${formatadorMonetario(valorTotalCompra)}",
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 16, top: 20),
                 child: CartaoCredito(
                   bandeiraCartaoCredito: _bandeiraCartaoCredito,
                   nomeBanco: _nomeBanco,
@@ -270,7 +291,6 @@ class _HomepageState extends State<Homepage> {
                 fontSize: 20,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    // print("Inicio");
                     setState(() {
                       _nomeBanco = nomeBancoController.text;
                       _nomeTitular = nomeTitularController.text;
@@ -280,23 +300,6 @@ class _HomepageState extends State<Homepage> {
                       _validadeMes = dropdownValueValidadeMeses;
                       _validadeAno = dropdownValueValidadeAnos;
                     });
-                    // print(
-                    //     "nomeBancoController.text => ${nomeBancoController.text}");
-                    // print("_nomeBanco => $_nomeBanco");
-                    // print("Fim");
-                    // print(_nomeTitular);
-                    // print(bandeiraCartaoCredito);
-                    // print(_numeroCartao);
-                    // print(_numeroCartaoCVV);
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   const SnackBar(
-                    //     content: Text(
-                    //       "Produto editado com sucesso!",
-                    //       style: TextStyle(fontSize: 16),
-                    //     ),
-                    //     showCloseIcon: true,
-                    //   ),
-                    // );
                   }
                 },
               ),
@@ -314,4 +317,14 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
+}
+
+List<String> divideValorTotalEmParcelas(
+    num valorTotal, int quantidadeParcelas) {
+  List<String> resultado = List.generate(quantidadeParcelas, (index) {
+    var parcela = index + 1;
+    var valor = (valorTotal / parcela).toStringAsFixed(2);
+    return "$parcela x R\$ $valor (Sem juros)";
+  });
+  return ["Preço à vista"] + resultado;
 }
