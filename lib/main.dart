@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app_compras/pages/homepage.dart';
+import 'package:app_compras/pages/pagamento.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const Homepage(),
+      home: const Pagamento(),
     );
   }
 }
