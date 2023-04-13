@@ -1,15 +1,4 @@
-import 'package:app_compras/utils/formatadores.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-import 'package:app_compras/components/botao.dart';
-import 'package:app_compras/components/cartao_credito.dart';
-import 'package:app_compras/components/label_campo.dart';
-import 'package:app_compras/utils/listas.dart';
-import 'package:app_compras/components/campo_texto.dart';
-import 'package:app_compras/components/select.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
-num valorTotalCompra = 900;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -47,14 +36,4 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
-}
-
-List<String> divideValorTotalEmParcelas(
-    num valorTotal, int quantidadeParcelas) {
-  List<String> resultado = List.generate(quantidadeParcelas, (index) {
-    var parcela = index + 1;
-    var valor = (valorTotal / parcela).toStringAsFixed(2);
-    return "$parcela x R\$ $valor (Sem juros)";
-  });
-  return ["Preço à vista"] + resultado;
 }

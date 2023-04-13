@@ -54,6 +54,10 @@ class _PagamentoState extends State<Pagamento> {
   @override
   void dispose() {
     nomeBancoController.dispose();
+    nomeBancoController.dispose();
+    nomeTitularController.dispose();
+    numeroCartaoController.dispose();
+    numeroCartaoCVVController.dispose();
     super.dispose();
   }
 
