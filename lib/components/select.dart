@@ -28,6 +28,19 @@ class _SelectState extends State<Select> {
     // String dropdownValue =
     //     (widget.outroItem == null) ? widget.lista.first : widget.outroItem!;
 
+    var a = widget.lista.map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(
+          value,
+          style: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 16,
+          ),
+        ),
+      );
+    }).toList();
+
     return DropdownButtonFormField(
       // value: dropdownValue,
       value: widget.dropdownValue,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CampoTexto extends StatelessWidget {
   const CampoTexto({
@@ -12,6 +13,7 @@ class CampoTexto extends StatelessWidget {
     this.onChanged,
     this.onSaved,
     this.controller,
+    this.inputFormatters,
   });
 
   final String? labelText;
@@ -23,6 +25,7 @@ class CampoTexto extends StatelessWidget {
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +39,7 @@ class CampoTexto extends StatelessWidget {
         fontSize: 16,
         fontWeight: FontWeight.normal,
       ),
+      inputFormatters: inputFormatters,
       obscureText: (obscureText == null) ? false : obscureText!,
       decoration: InputDecoration(
         border: OutlineInputBorder(

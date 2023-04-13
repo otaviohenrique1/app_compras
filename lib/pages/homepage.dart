@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/components/cartao_credito.dart';
 import 'package:app_compras/components/label_campo.dart';
 import 'package:app_compras/utils/listas.dart';
 import 'package:app_compras/components/campo_texto.dart';
 import 'package:app_compras/components/select.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 num valorTotalCompra = 900;
 
@@ -16,15 +18,6 @@ List<String> divideValorTotalEmParcelas(
     return "$parcela x R\$ $valor (Sem juros)";
   });
   return ["Preço à vista"] + resultado;
-}
-
-List<String> valorParcelas(num valorTotal, int quantidadeParcelas) {
-  List<String> resultado = List.generate(quantidadeParcelas, (index) {
-    var parcela = index + 1;
-    var valor = (valorTotal / quantidadeParcelas).toStringAsFixed(2);
-    return "$parcela x R\$ $valor (Sem juros)";
-  });
-  return resultado;
 }
 
 class Homepage extends StatefulWidget {
@@ -54,10 +47,18 @@ class _HomepageState extends State<Homepage> {
   String dropdownValueValidadeMeses = listaValidadeMeses.first;
   String dropdownValueValidadeAnos = listaValidadeAnos.first;
 
+  final _numeroCartaoFormatter = MaskTextInputFormatter(
+    mask: '#### #### #### ####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+
+  final _numeroCVVFormatter = MaskTextInputFormatter(
+    mask: '###',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
+
   List<String> listaParcelas =
       ["Selecione"] + divideValorTotalEmParcelas(valorTotalCompra, 12);
-
-  List<String> listaValoresParcelas = valorParcelas(valorTotalCompra, 12);
 
   @override
   void dispose() {
@@ -162,8 +163,10 @@ class _HomepageState extends State<Homepage> {
                 titulo: "Numero no cartão",
                 campo: CampoTexto(
                   controller: numeroCartaoController,
-                  keyboardType: TextInputType.text,
-                  hintText: "Digite o numero no cartão",
+                  keyboardType: TextInputType.number,
+                  hintText: "#### #### #### ####",
+                  // hintText: "Digite o numero no cartão",
+                  inputFormatters: [_numeroCartaoFormatter],
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Campo vazio";
@@ -180,7 +183,12 @@ class _HomepageState extends State<Homepage> {
                 campo: CampoTexto(
                   controller: numeroCartaoCVVController,
                   keyboardType: TextInputType.number,
-                  hintText: "Digite o numero do CVV",
+                  inputFormatters: [
+                    _numeroCVVFormatter
+                    // LengthLimitingTextInputFormatter(3),
+                  ],
+                  hintText: "###",
+                  // hintText: "Digite o numero do CVV",
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Campo vazio";
@@ -255,7 +263,6 @@ class _HomepageState extends State<Homepage> {
                   // onSaved: (value) {_bandeiraCartaoCredito = value!;},
                 ),
               ),
-              // Text("Teste => $_nomeBanco"),
               Botao(
                 backgroundColor: Colors.blue,
                 label: "Salvar",
