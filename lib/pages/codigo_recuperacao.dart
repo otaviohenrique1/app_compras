@@ -57,12 +57,19 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
               ),
               Botao(
                 backgroundColor: Colors.blueAccent,
-                label: "Entrar",
+                label: "proximo",
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {}
                 },
+              ),
+              Botao(
+                backgroundColor: Colors.redAccent,
+                label: "Cancelar",
+                fontColor: Colors.white,
+                fontSize: 20,
+                onPressed: () {},
               ),
             ],
           ),

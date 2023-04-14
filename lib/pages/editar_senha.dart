@@ -73,12 +73,19 @@ class _EditarSenhaState extends State<EditarSenha> {
               ),
               Botao(
                 backgroundColor: Colors.blueAccent,
-                label: "Entrar",
+                label: "Editar",
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {}
                 },
+              ),
+              Botao(
+                backgroundColor: Colors.redAccent,
+                label: "Cancelar",
+                fontColor: Colors.white,
+                fontSize: 20,
+                onPressed: () {},
               ),
             ],
           ),
