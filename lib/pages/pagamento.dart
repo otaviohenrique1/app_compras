@@ -1,4 +1,4 @@
-import 'package:app_compras/utils/formatadores.dart';
+import 'package:app_compras/utils/helpers.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:app_compras/components/botao.dart';
@@ -7,7 +7,6 @@ import 'package:app_compras/components/label_campo.dart';
 import 'package:app_compras/utils/listas.dart';
 import 'package:app_compras/components/campo_texto.dart';
 import 'package:app_compras/components/select.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 num valorTotalCompra = 900;
 
@@ -38,15 +37,8 @@ class _PagamentoState extends State<Pagamento> {
   String dropdownValueValidadeMeses = listaValidadeMeses.first;
   String dropdownValueValidadeAnos = listaValidadeAnos.first;
 
-  final _numeroCartaoFormatter = MaskTextInputFormatter(
-    mask: '#### #### #### ####',
-    filter: {"#": RegExp(r'[0-9]')},
-  );
-
-  final _numeroCVVFormatter = MaskTextInputFormatter(
-    mask: '###',
-    filter: {"#": RegExp(r'[0-9]')},
-  );
+  final _numeroCartaoFormatter = mascaraNumerica('#### #### #### ####');
+  final _numeroCVVFormatter = mascaraNumerica('###');
 
   List<String> listaParcelas =
       ["Selecione"] + divideValorTotalEmParcelas(valorTotalCompra, 12);
@@ -321,14 +313,4 @@ class _PagamentoState extends State<Pagamento> {
       ),
     );
   }
-}
-
-List<String> divideValorTotalEmParcelas(
-    num valorTotal, int quantidadeParcelas) {
-  List<String> resultado = List.generate(quantidadeParcelas, (index) {
-    var parcela = index + 1;
-    var valor = (valorTotal / parcela).toStringAsFixed(2);
-    return "$parcela x R\$ $valor (Sem juros)";
-  });
-  return ["Preço à vista"] + resultado;
 }

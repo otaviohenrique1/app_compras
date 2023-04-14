@@ -1,5 +1,6 @@
-import 'package:app_compras/pages/login.dart';
 import 'package:flutter/material.dart';
+// import 'package:app_compras/pages/login.dart';
+import 'package:app_compras/pages/novo_usuario.dart';
 // import 'package:app_compras/pages/pagamento.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const Login(),
+      home: const NovoUsuario(),
     );
   }
 }

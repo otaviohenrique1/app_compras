@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Header(titulo: "Login"),
+      appBar: const Header(titulo: "App Compras"),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
               LabelCampo(
                 titulo: "Senha",
                 exibeTitulo: true,
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 32),
                 campo: CampoTexto(
                   controller: _senhaController,
                   hintText: "Digite a sua senha",
@@ -71,7 +71,7 @@ class _LoginState extends State<Login> {
               ),
               Botao(
                 backgroundColor: Colors.blueAccent,
-                label: "Salvar",
+                label: "Entrar",
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
@@ -79,12 +79,36 @@ class _LoginState extends State<Login> {
                 },
               ),
               const SizedBox(height: 8),
-              Botao(
-                backgroundColor: Colors.redAccent,
-                label: "Cancelar",
-                fontColor: Colors.white,
-                fontSize: 20,
+              TextButton(
                 onPressed: () {},
+                child: const Text(
+                  "Esqueceu a senha?",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextButton(
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Ainda não tem conta?",
+                      style:
+                          TextStyle(fontSize: 18, color: Colors.grey.shade600),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      "Faça seu cadastro!",
+                      style: TextStyle(fontSize: 18, color: Colors.blueAccent),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
