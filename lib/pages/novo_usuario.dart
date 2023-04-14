@@ -1,3 +1,4 @@
+import 'package:app_compras/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/utils/helpers.dart';
@@ -68,6 +69,8 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Campo vazio";
+                    } else if (!RegExp(r'@').hasMatch(value)) {
+                      return "Email invalido";
                     }
                     return null;
                   },
@@ -102,6 +105,8 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Campo vazio";
+                    } else if (value != _senhaController.text) {
+                      return "As senhas digitadas não coincidem";
                     }
                     return null;
                   },
