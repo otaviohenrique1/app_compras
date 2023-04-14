@@ -1,4 +1,3 @@
-import 'package:app_compras/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/utils/helpers.dart';
@@ -22,13 +21,17 @@ class _NovoUsuarioState extends State<NovoUsuario> {
   final _celularController = TextEditingController();
   final _cpfController = TextEditingController();
 
-  final _numeroTelefoneFormatter = mascaraNumerica('(##)#####-####');
-  final _numeroCelularFormatter = mascaraNumerica('###.###.###-##');
+  final _numeroCelularFormatter = mascaraNumerica('(##)#####-####');
+  final _numeroCPFFormatter = mascaraNumerica('###.###.###-##');
 
   @override
   void dispose() {
+    _nomeController.dispose();
     _emailController.dispose();
     _senhaController.dispose();
+    _repitaSenhaController.dispose();
+    _celularController.dispose();
+    _cpfController.dispose();
     super.dispose();
   }
 
@@ -88,6 +91,8 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Campo vazio";
+                    } else if (value.length <= 8) {
+                      return "Senha tem que ter 8 ou mais caracteres";
                     }
                     return null;
                   },
@@ -105,6 +110,8 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Campo vazio";
+                    } else if (value.length < 8) {
+                      return "Senha tem que ter 8 ou mais caracteres";
                     } else if (value != _senhaController.text) {
                       return "As senhas digitadas não coincidem";
                     }
@@ -118,7 +125,7 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                 padding: const EdgeInsets.only(bottom: 16),
                 campo: CampoTexto(
                   controller: _celularController,
-                  inputFormatters: [_numeroCelularFormatter],
+                  inputFormatters: [_numeroCPFFormatter],
                   hintText: "(##)#####-####",
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -135,7 +142,7 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                 padding: const EdgeInsets.only(bottom: 32),
                 campo: CampoTexto(
                   controller: _cpfController,
-                  inputFormatters: [_numeroTelefoneFormatter],
+                  inputFormatters: [_numeroCelularFormatter],
                   hintText: "###.###.###-##",
                   keyboardType: TextInputType.number,
                   validator: (value) {
