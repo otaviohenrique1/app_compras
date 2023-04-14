@@ -1,3 +1,4 @@
+import 'package:app_compras/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/utils/helpers.dart';
@@ -159,7 +160,10 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+                  }
                 },
               ),
             ],

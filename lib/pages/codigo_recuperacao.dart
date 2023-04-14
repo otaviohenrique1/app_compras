@@ -1,3 +1,6 @@
+import 'package:app_compras/pages/editar_senha.dart';
+import 'package:app_compras/pages/login.dart';
+import 'package:app_compras/pages/recuperacao.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/utils/helpers.dart';
@@ -57,11 +60,28 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
               ),
               Botao(
                 backgroundColor: Colors.blueAccent,
-                label: "proximo",
+                label: "Proximo",
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EditarSenha()));
+                  }
+                },
+              ),
+              Botao(
+                backgroundColor: Colors.green,
+                label: "Reenviar código",
+                fontColor: Colors.white,
+                fontSize: 20,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Recuperacao()));
                 },
               ),
               Botao(
@@ -69,7 +89,10 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
                 label: "Cancelar",
                 fontColor: Colors.white,
                 fontSize: 20,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Login()));
+                },
               ),
             ],
           ),

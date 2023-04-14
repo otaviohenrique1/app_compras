@@ -1,4 +1,8 @@
 import 'package:app_compras/components/botao.dart';
+import 'package:app_compras/pages/homepage.dart';
+import 'package:app_compras/pages/novo_usuario.dart';
+import 'package:app_compras/pages/pagamento.dart';
+import 'package:app_compras/pages/recuperacao.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/campo_texto.dart';
 import 'package:app_compras/components/header.dart';
@@ -75,12 +79,22 @@ class _LoginState extends State<Login> {
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Homepage()));
+                  }
                 },
               ),
               const SizedBox(height: 8),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Recuperacao()));
+                },
                 child: const Text(
                   "Esqueceu a senha?",
                   style: TextStyle(
@@ -93,7 +107,12 @@ class _LoginState extends State<Login> {
               ),
               const SizedBox(height: 8),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NovoUsuario()));
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

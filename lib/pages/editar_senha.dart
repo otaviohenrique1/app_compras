@@ -1,3 +1,4 @@
+import 'package:app_compras/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/components/campo_texto.dart';
@@ -77,7 +78,10 @@ class _EditarSenhaState extends State<EditarSenha> {
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+                  }
                 },
               ),
               Botao(
@@ -85,7 +89,10 @@ class _EditarSenhaState extends State<EditarSenha> {
                 label: "Cancelar",
                 fontColor: Colors.white,
                 fontSize: 20,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Login()));
+                },
               ),
             ],
           ),
