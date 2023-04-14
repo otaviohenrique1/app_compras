@@ -1,7 +1,6 @@
 import 'package:app_compras/components/botao.dart';
 import 'package:app_compras/pages/homepage.dart';
 import 'package:app_compras/pages/novo_usuario.dart';
-import 'package:app_compras/pages/pagamento.dart';
 import 'package:app_compras/pages/recuperacao.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/campo_texto.dart';

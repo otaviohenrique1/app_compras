@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-// import 'package:app_compras/pages/login.dart';
-import 'package:app_compras/pages/novo_usuario.dart';
-// import 'package:app_compras/pages/pagamento.dart';
+import 'package:app_compras/pages/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppCompras());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AppCompras extends StatelessWidget {
+  const AppCompras({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'AppCompras Flutter',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const NovoUsuario(),
+      home: const Login(),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:app_compras/pages/login.dart';
 import 'package:app_compras/pages/recuperacao.dart';
 import 'package:flutter/material.dart';
 import 'package:app_compras/components/botao.dart';
-import 'package:app_compras/utils/helpers.dart';
 import 'package:app_compras/components/campo_texto.dart';
 import 'package:app_compras/components/header.dart';
 import 'package:app_compras/components/label_campo.dart';
