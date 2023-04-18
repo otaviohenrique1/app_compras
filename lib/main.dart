@@ -1,5 +1,6 @@
+import 'package:app_compras/pages/detalhes_produto.dart';
 import 'package:flutter/material.dart';
-import 'package:app_compras/pages/login.dart';
+// import 'package:app_compras/pages/login.dart';
 
 void main() {
   runApp(const AppCompras());
@@ -16,7 +17,7 @@ class AppCompras extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const Login(),
+      home: const DetalhesProduto(),
     );
   }
 }

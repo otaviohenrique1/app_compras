@@ -79,8 +79,12 @@ class _EditarSenhaState extends State<EditarSenha> {
                 fontSize: 20,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
                   }
                 },
               ),
@@ -90,8 +94,12 @@ class _EditarSenhaState extends State<EditarSenha> {
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
                 },
               ),
             ],

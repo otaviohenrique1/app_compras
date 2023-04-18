@@ -37,16 +37,19 @@ class _RecuperacaoState extends State<Recuperacao> {
                 child: Text("Esqueci a senha", style: TextStyle(fontSize: 32)),
               ),
               const Center(
-                child: Text(
-                  "Enviaremos um código por email para a recuperação da senha.",
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.justify,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Text(
+                    "Enviaremos um código por email para a recuperação da senha.",
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.justify,
+                  ),
                 ),
               ),
               LabelCampo(
                 titulo: "E-mail",
                 exibeTitulo: true,
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 40),
                 campo: CampoTexto(
                   controller: _emailController,
                   hintText: "Digite o seu e-mail",
@@ -69,20 +72,27 @@ class _RecuperacaoState extends State<Recuperacao> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CodigoRecuperacao()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CodigoRecuperacao(),
+                      ),
+                    );
                   }
                 },
               ),
+              const SizedBox(height: 8),
               Botao(
                 backgroundColor: Colors.redAccent,
                 label: "Cancelar",
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
                 },
               ),
             ],

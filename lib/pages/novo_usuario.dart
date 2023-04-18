@@ -154,16 +154,35 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Botao(
+                  backgroundColor: Colors.blueAccent,
+                  label: "Entrar",
+                  fontColor: Colors.white,
+                  fontSize: 20,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()));
+                    }
+                  },
+                ),
+              ),
               Botao(
-                backgroundColor: Colors.blueAccent,
-                label: "Entrar",
+                backgroundColor: Colors.redAccent,
+                label: "Cancelar",
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
-                  }
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
                 },
               ),
             ],

@@ -35,16 +35,19 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
           child: ListView(
             children: [
               const Center(
-                child: Text(
-                  "Digite o código enviado pelo email.",
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.justify,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 40, top: 16),
+                  child: Text(
+                    "Digite o código que foi enviado para o seu email.",
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.justify,
+                  ),
                 ),
               ),
               LabelCampo(
                 titulo: "Código",
                 exibeTitulo: true,
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(bottom: 40),
                 campo: CampoTexto(
                   controller: _codigoController,
                   hintText: "Digite o código",
@@ -65,23 +68,30 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const EditarSenha()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditarSenha(),
+                      ),
+                    );
                   }
                 },
               ),
-              Botao(
-                backgroundColor: Colors.green,
-                label: "Reenviar código",
-                fontColor: Colors.white,
-                fontSize: 20,
-                onPressed: () {
-                  Navigator.push(
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Botao(
+                  backgroundColor: Colors.green,
+                  label: "Reenviar código",
+                  fontColor: Colors.white,
+                  fontSize: 20,
+                  onPressed: () {
+                    Navigator.pop(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Recuperacao()));
-                },
+                        builder: (context) => const Recuperacao(),
+                      ),
+                    );
+                  },
+                ),
               ),
               Botao(
                 backgroundColor: Colors.redAccent,
@@ -89,8 +99,12 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
                 fontColor: Colors.white,
                 fontSize: 20,
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ),
+                  );
                 },
               ),
             ],
